@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { ExternalLink, Github, Play } from 'lucide-react';
 import chessImg from './images/ChessMaster.png';
-import gameImg from './images/UnknownJourney.png';
+import gameImg from './images/unknownJourney.png';
 import pwdImg from './images/PwdAnalyzer.png' 
 import pingPongImg from './images/PingPongGame.png';
 
