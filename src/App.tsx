@@ -10,6 +10,11 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+<<<<<<< HEAD
+=======
+    // Scroll to top when the page loads
+    window.scrollTo(0, 0);
+>>>>>>> 40e643e (Files committed sucessfully)
     setIsLoaded(true);
   }, []);
 

@@ -1,8 +1,78 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 
+<<<<<<< HEAD
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+=======
+interface TypewriterTextProps {
+  text: string;
+  onComplete?: () => void;
+  delay?: number;
+  reverse?: boolean;
+  hideCursorOnComplete?: boolean;
+}
+
+const TypewriterText = ({ text, onComplete, delay = 0, reverse = false, hideCursorOnComplete = false }: TypewriterTextProps) => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    // Blinking cursor effect
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 530);
+
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted) {
+      const startTimeout = setTimeout(() => {
+        setHasStarted(true);
+      }, delay);
+      return () => clearTimeout(startTimeout);
+    }
+
+    if (hasStarted) {
+      if (!reverse && currentIndex < text.length) {
+        const timeout = setTimeout(() => {
+          setDisplayText(prev => prev + text[currentIndex]);
+          setCurrentIndex(prev => prev + 1);
+        }, 30);
+        return () => clearTimeout(timeout);
+      } else if (reverse && currentIndex > 0) {
+        const timeout = setTimeout(() => {
+          setDisplayText(prev => prev.slice(0, -1));
+          setCurrentIndex(prev => prev - 1);
+        }, 30);
+        return () => clearTimeout(timeout);
+      } else if (onComplete) {
+        setIsComplete(true);
+        onComplete();
+      }
+    }
+  }, [currentIndex, text, onComplete, delay, hasStarted, reverse]);
+
+  return (
+    <span>
+      {displayText}
+      {(!hideCursorOnComplete || !isComplete) && (
+        <span className={`inline-block w-[2px] h-[1em] bg-current ml-[2px] align-middle ${showCursor ? 'opacity-100' : 'opacity-0'}`} />
+      )}
+    </span>
+  );
+};
+
+const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentLine, setCurrentLine] = useState(0);
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [isReversing, setIsReversing] = useState(false);
+>>>>>>> 40e643e (Files committed sucessfully)
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 500);
@@ -13,6 +83,27 @@ const Hero = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+<<<<<<< HEAD
+=======
+  const titles = [
+    "Budding Full Stack Developer",
+    "Game Development Enthusiast"
+  ];
+
+  const handleTitleComplete = () => {
+    if (!isReversing) {
+      // After typing is complete, wait a bit then start reversing
+      setTimeout(() => {
+        setIsReversing(true);
+      }, 3000);
+    } else {
+      // After reverse typing is complete, move to next titles
+      setIsReversing(false);
+      setTitleIndex((prev) => (prev + 1) % titles.length);
+    }
+  };
+
+>>>>>>> 40e643e (Files committed sucessfully)
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background Animation */}
@@ -27,6 +118,7 @@ const Hero = () => {
       }`}>
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
+<<<<<<< HEAD
             Abhishek.M.Kalghatgi
           </span>
         </h1>
@@ -76,6 +168,65 @@ const Hero = () => {
         <button 
           onClick={scrollToAbout}
           className="animate-bounce text-gray-400 hover:text-white transition-colors duration-200"
+=======
+            <TypewriterText 
+              text="Abhishek.M.Kalghatgi"
+              delay={0}
+              onComplete={() => setCurrentLine(1)}
+            />
+          </span>
+        </h1>
+        
+        <h2 className="text-2xl md:text-3xl text-gray-300 mb-8 font-light min-h-[2em]">
+          {currentLine >= 1 && (
+            <TypewriterText 
+              text={titles[titleIndex]}
+              delay={0}
+              reverse={isReversing}
+              onComplete={handleTitleComplete}
+            />
+          )}
+        </h2>
+        
+        <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed min-h-[4em]">
+          {currentLine >= 1 && (
+            <TypewriterText 
+              text="Crafting functional, elegant, and impactful digital experiences—whether it's a web app or a game. Let's build something meaningful together."
+              delay={0}
+              hideCursorOnComplete={true}
+            />
+          )}
+        </p>
+
+        <div className="flex justify-center space-x-6 mb-12">
+          <a
+            href="https://github.com/AbhishekMK190"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors duration-200"
+          >
+            <Github size={24} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abhishek-m-kalghatgi-190/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors duration-200"
+          >
+            <Linkedin size={24} />
+          </a>
+          <a
+            href="mailto:abkalghatgi1@gmail.com"
+            className="text-gray-400 hover:text-white transition-colors duration-200"
+          >
+            <Mail size={24} />
+          </a>
+        </div>
+
+        <button
+          onClick={scrollToAbout}
+          className="text-gray-400 hover:text-white transition-colors duration-200 animate-bounce"
+>>>>>>> 40e643e (Files committed sucessfully)
         >
           <ChevronDown size={32} />
         </button>

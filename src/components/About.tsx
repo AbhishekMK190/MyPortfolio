@@ -6,8 +6,13 @@ const About = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.3 });
 
   return (
+<<<<<<< HEAD
     <section id="about" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
+=======
+    <section id="about" className="min-h-screen py-20 relative overflow-hidden">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-transition`}>
+>>>>>>> 40e643e (Files committed sucessfully)
         <div 
           ref={ref}
           className={`transition-all duration-1000 ${

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Mail, Github, Linkedin, Twitter, MapPin, Phone, Send } from 'lucide-react';
+<<<<<<< HEAD
+=======
+import Terminal from './Terminal';
+>>>>>>> 40e643e (Files committed sucessfully)
 
 const Contact = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.3 });
@@ -57,6 +61,16 @@ const Contact = () => {
     });
   };
 
+<<<<<<< HEAD
+=======
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+>>>>>>> 40e643e (Files committed sucessfully)
   return (
     <section id="contact" className="py-20 px-4 bg-slate-800/30">
       <div className="max-w-6xl mx-auto">
@@ -221,6 +235,19 @@ const Contact = () => {
             </div>
           </div>
 
+<<<<<<< HEAD
+=======
+          {/* Terminal Section */}
+          <div className="mt-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Interactive Terminal
+              </span>
+            </h2>
+            <Terminal onNavigate={scrollToSection} />
+          </div>
+
+>>>>>>> 40e643e (Files committed sucessfully)
           {/* Footer */}
           <div className="mt-20 pt-8 border-t border-white/10 text-center">
             <p className="text-gray-400">
